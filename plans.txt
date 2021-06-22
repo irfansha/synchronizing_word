@@ -1,0 +1,65 @@
+# Irfansha Shaik, 22.06.2021, Aarhus.
+
+1. We consider arbitrary automata i.e., the transition funciton is not definition
+   and use the forall variables to handle all possible transitions.
+2. To define the deterministic transitions we use the clause "oneof()".
+3. We only consider two letter alphabet and use two different actions movea, moveb where each of them will have 2 arguments for the pair of nodes.
+
+The following is an example with action and initial state (for n = 3 nodes):
+
+
+predicates: (current_node ?y1) (edgea ?y1 ?y2) (edgeb ?y1 ?y2)
+
+actions:
+
+  movea(?x1 ?x2):
+  precondition: (current_node ?x1) (edgea ?y1 ?y2)
+  effect: (not (current_node ?x1)) (current_node ?x2)
+
+  moveb(?x1 ?x2):
+  precondition: (current_node ?x1) (edgeb ?y1 ?y2)
+  effect: (not (current_node ?x1)) (current_node ?x2)
+
+Initial state:
+
+  (oneof
+    (current_node n0)
+    (current_node n1)
+    (current_node n2)
+  )
+
+  (oneof
+    (edgea n0 n0)
+    (edgea n0 n1)
+    (edgea n0 n2)
+  )
+
+  (oneof
+    (edgeb n0 n0)
+    (edgeb n0 n1)
+    (edgeb n0 n2)
+  )
+
+  (oneof
+    (edgea n1 n0)
+    (edgea n1 n1)
+    (edgea n1 n2)
+  )
+
+  (oneof
+    (edgeb n1 n0)
+    (edgeb n1 n1)
+    (edgeb n1 n2)
+  )
+
+  (oneof
+    (edgea n2 n0)
+    (edgea n2 n1)
+    (edgea n2 n2)
+  )
+
+  (oneof
+    (edgeb n2 n0)
+    (edgeb n2 n1)
+    (edgeb n2 n2)
+  )
